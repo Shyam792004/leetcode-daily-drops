@@ -1,0 +1,39 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        
+        int []ans=new int[2];
+        Arrays.fill(ans,-1);
+        int left=0;
+        int flagL=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==target)
+            {
+               left=i; 
+               flagL=1;
+               break;
+            }
+        }
+        if(flagL==1)
+        {
+        ans[0]=left;
+        }
+
+        int right=0;
+        int flagR=0;
+        for(int i=nums.length-1;i>=0;i--)
+        {
+            if(nums[i]==target)
+            {
+               right=i; 
+               flagR=1;
+               break;
+            }
+        }
+        if(flagR==1)
+        {
+        ans[1]=right;
+        }
+        return ans;
+    }
+}
