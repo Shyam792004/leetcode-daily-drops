@@ -1,0 +1,40 @@
+
+/**
+ * Definition for singly‑linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+
+        /* -------- 1. Count the lengths -------- */
+        int lenA = 0, lenB = 0;
+        ListNode pA = headA, pB = headB;
+
+        while (pA != null) { lenA++; pA = pA.next; }
+        while (pB != null) { lenB++; pB = pB.next; }
+
+        /* -------- 2. Advance the longer list by |lenA‑lenB| -------- */
+        int diff = Math.abs(lenA - lenB);
+        pA = headA;
+        pB = headB;
+
+        if (lenA > lenB) {
+            for (int i = 0; i < diff; i++) pA = pA.next;
+        } else {
+            for (int i = 0; i < diff; i++) pB = pB.next;
+        }
+
+        /* -------- 3. Move in lock‑step until the nodes match -------- */
+        while (pA != null && pB != null) {
+            if (pA == pB) return pA;   // intersection found
+            pA = pA.next;
+            pB = pB.next;
+        }
+        return null;                   // no intersection
+    }
+}
