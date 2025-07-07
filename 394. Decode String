@@ -1,0 +1,52 @@
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> si=new Stack<>();
+        Stack<String> ss=new Stack<>();
+        int k=0;
+     for(char c:s.toCharArray())
+     {
+     
+         if (Character.isDigit(c))
+         {
+            k = (k * 10) + (c - '0');
+            continue;
+         }
+         if(c=='[')
+         {
+            si.push(k);
+            k=0;
+            ss.push(String.valueOf(c));
+            continue;
+         }
+         if(c!=']')
+         {
+            ss.push(String.valueOf(c));
+            continue;
+         }
+         StringBuilder temp = new StringBuilder();
+         while (!ss.peek().equals("["))
+         {
+           temp.insert(0, ss.pop());
+         }
+           // remove the "["
+           ss.pop();
+
+        StringBuilder replacement = new StringBuilder();
+        int count = si.pop();
+        for (int i = 0; i < count; i++)
+        {
+           replacement.append(temp);
+        }
+      
+        ss.push(replacement.toString());
+
+    }
+    
+      StringBuilder result = new StringBuilder();
+      while (!ss.empty()) 
+      {
+       result.insert(0, ss.pop());
+      }
+      return result.toString();
+    }
+}
