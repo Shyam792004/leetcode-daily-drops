@@ -1,0 +1,14 @@
+class Solution {
+    public int scoreOfString(String s) {
+    
+    int a=(int) s.charAt(0);
+    int ans=0;
+       for(int i=1;i<s.length();i++)
+       {
+
+        ans+=Math.abs(a-((int) s.charAt(i)));
+        a=(int) s.charAt(i);
+       }
+       return ans;
+    }
+}
