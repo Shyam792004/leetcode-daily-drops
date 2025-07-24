@@ -1,0 +1,36 @@
+import java.util.*;
+
+class Solution {
+
+    public int ansing(String s, int left, int right, int m, char[] c) {
+        String a = s.substring(left, right + 1);
+        char[] c1 = a.toCharArray();
+        Arrays.sort(c1);
+        String b1 = new String(c);
+        String b2 = new String(c1);
+
+        if (b1.equals(b2)) {
+            return left;
+        }
+        return -1; // return -1 if not an anagram
+    }
+
+    public List<Integer> findAnagrams(String s, String p) {
+        char[] c = p.toCharArray();
+        Arrays.sort(c);
+        int m = p.length();
+        int left = 0, right = 0;
+        ArrayList<Integer> alist = new ArrayList<>();
+
+        for (int i = 0; i <= s.length() - m; i++) {
+            left = i;
+            right = i + m - 1;
+            int o = ansing(s, left, right, m, c);
+            if (o != -1) {
+                alist.add(o);
+            }
+        }
+
+        return alist;
+    }
+}
