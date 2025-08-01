@@ -1,0 +1,24 @@
+class Solution {
+    public String clearDigits(String s) {
+        Stack<Character>st=new Stack<>();
+        for(char c:s.toCharArray())
+        {
+            if(Character.isLetter(c))
+            {
+                st.push(c);
+            }
+            if(Character.isDigit(c))
+            {
+                st.pop();
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        for (char ch : st) {
+            result.append(ch);
+        }
+
+        return result.toString();
+
+
+    }
+}
