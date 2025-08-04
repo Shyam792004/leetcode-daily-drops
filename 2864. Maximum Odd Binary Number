@@ -1,0 +1,25 @@
+class Solution {
+    public String maximumOddBinaryNumber(String s) {
+        int cntZero=0;
+        int cntOne=0;
+        for( char c:s.toCharArray())
+        {
+            if(c=='0')
+            {
+                cntZero++;
+            }
+            else
+            {
+                cntOne++;
+            }
+        }
+        StringBuilder sb=new StringBuilder();
+      
+
+        sb.append("1".repeat(cntOne - 1));  // Put all remaining 1s at start
+        sb.append("0".repeat(cntZero));    // Then all 0s
+        sb.append("1");                    // Then 1 at the end to make it odd
+        return sb.toString();              // ✅ No need to reverse
+
+    }
+}
