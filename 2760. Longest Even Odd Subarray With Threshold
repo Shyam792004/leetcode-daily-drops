@@ -1,0 +1,61 @@
+class Solution {
+    public int chk(int left,int right,int nums[],int th)
+    {
+        int pt1=right-left+1;
+        if(nums[left]%2==0)
+        {
+            for(int i=left;i<=right;i++)
+            {
+                if(nums[i]<=th)
+                {
+                    if(i!=right && nums[i]%2==0  && nums[i+1]%2!=0 && nums[i+1]<=th) 
+                    {
+                    pt1--;
+                    }
+                    if(i!=right && nums[i]%2!=0  && nums[i+1]%2==0 && nums[i+1]<=th) 
+                    {
+                    pt1--;
+                    }
+                    if(i==right && left!=right)
+                    {
+                        if((nums[i]%2)==0 && (nums[i-1]%2!=0) ||(nums[i]%2)!=0 && ((nums[i-1]%2)==0))
+                        {
+                            pt1--;
+                        }
+                    }
+                    if(i==right && left==right)
+                    {
+                        if((nums[i]%2)==0)
+                        {
+                            pt1--;
+                        }
+                    }
+                }
+            }
+        }
+        if(pt1==0)
+        {
+            return right-left+1;
+        }
+        return 0;
+      
+    }
+    public int longestAlternatingSubarray(int[] nums, int th) {
+        int left=0;
+        int right=0;
+        int max=0;
+        for(int i=0;i<nums.length;i++)
+        {
+
+          for(int j=0;j<nums.length;j++)
+          {
+            int length=chk(i,j,nums,th);
+            if(length>max)
+            {
+                max=length;
+            }
+          }
+        }
+        return max;
+    }
+}
